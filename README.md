@@ -114,20 +114,20 @@ En cuanto a la gestión de base de datos: El botón “Vaciar BBDD” elimina to
 
 He implementado siete controladores para manejar el sitio web. Son los siguientes:
 
-Admin: Todo lo relacionado a la administración de Foroquejas. Agregar, editar y eliminar usuarios, log y gestión de BBDD.  
-Error: Usado para mostrar una ventana de error si la URL es incorrecta.
-Events: Gestión de quejas, likes/dislikes y comentarios.
-Login: Validación de usuarios.  
-Main: Página principal del sitio web.
-Profile: Perfil personal, obtención de datos (comentarios, quejas, likes/dislikes) y modificación del perfil.
-Users: Usado para obtener estadísticas del sitio web. No tiene páginas como tal, sino que devuelve objetos JSON.
+- Admin: Todo lo relacionado a la administración de Foroquejas. Agregar, editar y eliminar usuarios, log y gestión de BBDD.  
+- Error: Usado para mostrar una ventana de error si la URL es incorrecta.
+- Events: Gestión de quejas, likes/dislikes y comentarios.
+- Login: Validación de usuarios.  
+- Main: Página principal del sitio web.
+- Profile: Perfil personal, obtención de datos (comentarios, quejas, likes/dislikes) y modificación del perfil.
+- Users: Usado para obtener estadísticas del sitio web. No tiene páginas como tal, sino que devuelve objetos JSON.
 
 ## Modelos
 
 Utilizo cinco modelos para manejar las cinco tablas de la base de datos. Son los siguientes:
 
-Admin: Usado para todas las consultas necesarias para la gestión de BBDD.
-Comment: Consultas sobre eventos y estadísticos de estos.
-Event: Consultas para las quejas, likes, dislikes, búsqueda y estadísticos.
-Log: Funciones para el log del sistema.
-User: Todo tipo de consultas para gestionar los usuarios y sus estadísticos.
+- Admin: Usado para todas las consultas necesarias para la gestión de BBDD.
+- Comment: Consultas sobre eventos y estadísticos de estos.
+- Event: Consultas para las quejas, likes, dislikes, búsqueda y estadísticos.
+- Log: Funciones para el log del sistema.
+- User: Todo tipo de consultas para gestionar los usuarios y sus estadísticos.
