@@ -5,7 +5,7 @@ Esto es un foro para quejarse.
 
 ## Introducción
 
-El proyecto está íntegramente desarrollado por mí utilizando las siguientes tecnologías y lenguajes:
+El proyecto está íntegramente desarrollado utilizando las siguientes tecnologías y lenguajes:
 
 1. PHP
 2. HTML
