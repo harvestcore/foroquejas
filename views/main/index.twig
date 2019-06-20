@@ -1,0 +1,26 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/bigheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Bienvenido a Foroquejas</h2>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-10">
+        <p>Foroquejas es un foro para quejarse. Eres bienvenido para publicar todas aquellas quejas, lamentos, descontentos, acusaciones y demás sucesos que te inquieten.</p>
+        <p>En este sitio web podrás además comentar en las quejas de otros usuarios, para dejar claro tu punto de vista.</p>
+        <p>¡Contacta con un administrador para crear tu cuenta y comenzar a quejarte!</p>
+        <p>No pierdas más el tiempo:</p>
+        {% include "base/newevent.twig" %}
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Listado de usuarios</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10 table-responsive-sm">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre y apellidos</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Imagen</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th class="font-weight-normal">{{ user.id }}</th>
+                        <th class="font-weight-normal">{{ user.firstname | title }} {{ user.surname | title }}</th>
+                        <th class="font-weight-normal">{{ user.email }}</th>
+                        <th class="font-weight-normal">{{ user.rol }}</th>
+                        <th class="font-weight-normal">{{ user.status }}</th>
+                        <th class="font-weight-normal text-center"><img src="{{ URL }}{{ user.image }}" class="img-responsive rounded-circle image24px" alt=""></th>
+                        <th class="font-weight-normal"><a class="btn btn-info btn-sm" href="{{ URL }}admin/user/{{ user.id }}">Ver/Editar</a></th>
+                        <th class="font-weight-normal"><a class="btn btn-danger btn-sm" href="{{ URL }}admin/delete/{{ user.id }}">Eliminar</a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

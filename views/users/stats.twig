@@ -1,0 +1,49 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Estadísticas de Foroquejas</h2>
+    </div>
+</div>
+
+<div class="row my-5">
+    <div class="col-5">
+        <div id="usersPie"></div>
+    </div>
+
+    <div class="col-5">
+        <div id="activeUsersPie"></div>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+
+
+<div class="row my-5">
+    <div class="col-4">
+        <div id="eventCommentsPie"></div>
+    </div>
+
+    <div class="col-4">
+        <div id="statusEventPie"></div>
+    </div>
+
+    <div class="col-4">
+        <div id="likeDislikePie"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="{{ URL }}public/js/stats.js"></script>
+{% endblock %}  

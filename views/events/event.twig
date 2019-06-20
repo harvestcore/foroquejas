@@ -1,0 +1,144 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-10">
+        <div class="row bg-light">
+            <div class="col-3 border border-primary border-right-0 rounded py-3">
+                <div class="row col-12">
+                    <span class="font-weight-bold">Queja &nbsp;</span> #{{ event.id }}
+                </div>
+                <hr>
+                <div class="row col-12">
+                    <span class="font-weight-bold">Por: &nbsp;</span> {{ event.user.firstname | title }} {{ event.user.surname | title }}
+                </div>
+                <div class="row col-12">
+                    <span class="font-weight-bold">Lugar: &nbsp;</span> {{ event.place }}
+                </div>
+                <div class="row col-12">
+                    <span class="font-weight-bold">Estado: &nbsp;</span> <span id="status"></span>
+                </div>
+                <div class="row col-12">
+                    <span class="font-weight-bold">Likes: &nbsp;</span> <span id="likes"></span>
+                </div>
+                <div class="row col-12">
+                    <span class="font-weight-bold">Dislikes: &nbsp;</span> <span id="dislikes"></span>
+                </div>
+                {% if event.keywords != "" %}
+                    <hr>
+                    <div class="row col-12">
+                        <span class="font-weight-bold">Palabras clave: &nbsp;</span>{{ event.keywords }}
+                    </div>
+                {% endif %}
+                <hr>
+                <div class="row col-12 my-2">
+                    <button type="button" id="like" class="btn btn-success mx-1" title="Like"><i class="fas fa-thumbs-up"></i></button>
+                    <button type="button" id="dislike" class="btn btn-danger mx-1" title="Dislike"><i class="fas fa-thumbs-down"></i></button>
+                </div>
+
+                {% if session.user.email == event.email %}
+                    <div class="row col-12 my-2">
+                        <a href="{{ URL }}events/edit/{{ event.id }}" class="btn btn-info mx-1" title="Editar queja"><i class="fas fa-cogs"></i></a>
+                    </div>
+                {% endif %}
+
+                {% if session.user.rol == 'admin' %}
+                    <hr>
+                    <div class="row col-12 my-2">
+                        <a href="{{ URL }}events/delete/{{ event.id }}" class="btn btn-warning mx-1" title="Eliminar queja"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <div class="row col-12">
+                        <label for="event-status">Cambiar estado</label>
+                        <select name="event-status" id="changestatus">
+                            <option value="-" >----------</option>
+                            <option value="checking" >Comprobando</option>
+                            <option value="checked">Comprobada</option>
+                            <option value="processed">Procesada</option>
+                            <option value="irresolvable">Irresoluble</option>
+                            <option value="resolved">Resuelta</option>
+                        </select>
+                    </div>
+                {% endif %}               
+            </div>
+            <div class="col-9 border border-primary rounded">
+                <div class="row text-center pt-3">
+                    <div class="col-9 font-weight-bold">
+                        {{ event.title }}
+                    </div>
+                    <div class="col-3">
+                        {{ event.datetime | date("d/m/Y") }}
+                    </div>
+                </div>
+                <hr>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        {{ event.description }}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+
+{% if event.images | length > 0  %}
+    <div class="row">
+        <div class="col-10">
+            <div class="row bg-light border border-primary rounded mt-4 p-3">
+                {% for img in event.images %}
+                    <img src="{{ URL }}{{ img }}" class="img-thumbnail image500px my-2">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<div class="row bootstrap snippets">
+    <div class="col-12 mt-4 pl-0">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                    <form method="POST" action="{{ URL }}events/addcomment">
+                        <textarea name="comment-content" class="form-control border border-primary bg-light" placeholder="Deja un comentario..." rows="2" required></textarea>
+                        <input type="email" class="form-control" name="comment-email" value="{% if not session.user %}{{ 'anonymous@anonymous' }}{% else %}{{ session.user.email }}{% endif %}" required hidden>
+                        <input type="number" class="form-control" name="comment-event" value="{{ event.id }}" required hidden>
+                        <button type="submit" class="btn btn-info pull-right mt-2">Comentar</button>
+                    </form>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                        {% for comment in comments %}
+                            <li class="media">
+                                <img src="{{ URL }}{{ comment.user.image }}" alt="Img_{{ comment.user.email }}" class="rounded-circle">
+                                <div class="media-body mb-3">
+                                    <strong class="text-primary">{{ comment.user.firstname | title }} {{ comment.user.surname | title }}</strong>
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted">{{ comment.datetime }}</small>
+                                        {% if session.user.rol == 'admin' %}
+                                            <button type="button" id="removecomment" value="{{ comment.id }}" class="btn btn-sm btn-warning"><i class="fas fa-trash-alt"></i></button>
+                                        {% endif %}
+                                    </span>
+                                    <p>{{ comment.content }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="{{ URL }}public/js/scripts.js"></script>
+{% endblock %}

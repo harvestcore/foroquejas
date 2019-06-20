@@ -1,0 +1,54 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h3>Quiero quejarme</h3>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-10">
+        {{ message }}
+        <form method="POST" id="addeventform" action="{{ URL }}events/addevent" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                <label for="event-title">Título</label>
+                <input type="text" class="form-control" name="event-title" placeholder="Título" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="event-place">Lugar</label>
+                <input type="text" class="form-control" name="event-place" placeholder="Lugar" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="event-description">Descripción</label>
+                <textarea class="form-control" name="event-description" placeholder="Descripción..." rows="10" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="event-keywords">Palabras clave (separadas por comas)</label>
+                <input type="text" class="form-control" name="event-keywords" placeholder="Palabras clave (opcional)">
+            </div>
+
+            <div class="form-group">
+                <label for="event-images">Selecciona alguna imagen (opcional)</label>
+                <input type="file" name="event-images[]" id="event-images" class="file" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary">Publicar</button>
+        </form>
+    </div>
+
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="{{ URL }}public/js/pics.js"></script>
+{% endblock %}  

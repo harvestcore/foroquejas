@@ -1,0 +1,83 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  	<div class="col-sm-3">
+        <div class="text-center">
+            <img src="{{ URL }}{{ session.user.image }}" class="avatar img-circle rounded-circle image200px" alt="avatar">
+        </div>
+
+        <ul class="list-group mt-5">
+            <li class="list-group-item text-muted">Actividad<i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><a href="{{ URL }}profile/myevents">Quejas</a></strong></span> {{ events }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><a href="{{ URL }}profile/mycomments">Comentarios</a></strong></span> {{ comments }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><a href="{{ URL }}profile/mylikesdislikes">Likes</a></strong></span> {{ likes }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><a href="{{ URL }}profile/mylikesdislikes">Dislikes</a></strong></span> {{ dislikes }}</li>
+        </ul> 
+    </div>
+    
+    <div class="col-sm-9">
+        <form class="form mb-5" action="{{ URL }}profile/updateuser" method="POST" enctype='multipart/form-data'>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="profile-firstname"><h4>Nombre</h4></label>
+                    <input type="text" class="form-control" name="profile-firstname" placeholder="Nombre" value="{{ session.user.firstname }}" required>
+                </div>
+                <div class="col-6">
+                    <label for="profile-surname"><h4>Apellidos</h4></label>
+                    <input type="text" class="form-control" name="profile-surname" placeholder="Apellidos" value="{{ session.user.surname }}" required>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-12">
+                    <label for="profile-email"><h4>Email</h4></label>
+                    <input type="email" class="form-control" name="profile-email" placeholder="Email" value="{{ session.user.email }}" required readonly>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="profile-telnumber"><h4>Teléfono</h4></label>
+                    <input type="number" class="form-control" name="profile-telnumber" min="600000000" max="999999999" placeholder="Teléfono" value="{{ session.user.telnumber }}" required>
+                </div>
+
+                <div class="col-6">
+                    <label for="profile-address"><h4>Dirección postal</h4></label>
+                    <input type="text" class="form-control" name="profile-address" placeholder="Dirección postal" value="{{ session.user.address }}" required>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="profile-password"><h4>Contraseña</h4></label>
+                    <input type="password" class="form-control" name="profile-password" placeholder="Contraseña" required>
+                </div>
+
+                <div class="col-6">
+                    <label for="profile-password-confirm"><h4>Confirma tu contraseña</h4></label>
+                    <input type="password" class="form-control" name="profile-password-confirm" placeholder="Confirma tu contraseña" required>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-12">
+                    <h6>Cambiar foto</h6>
+                    <input type="file" name="profile-image" class="text-center center-block file-upload">
+                </div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-12">
+                    <button class="btn btn-lg btn-success" type="submit">Actualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Panel de control</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        <div class="border border-primary rounded px-2 py-2 my-3">
+            <h4>Confirmar vaciado de la BBDD</h4>
+            <a class="btn btn-danger" href="{{ URL }}admin/dropdb">Vaciar BBDD</a>
+        </div>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

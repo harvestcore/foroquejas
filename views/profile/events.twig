@@ -1,0 +1,41 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row mb-2">
+    <div class="col-10">
+        <h2>Mis quejas</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Fecha/Hora</th>
+                    <th>Lugar</th>
+                    <th>Asunto</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <th class="font-weight-normal">{{ event.datetime | date('d/m/y ~ H:i\\h') }}</th>
+                        <th class="font-weight-normal">{{ event.place }}</th>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ event.id }}">{{ event.title | length > 30 ? event.title | slice(0, 30) ~ '...' : event.title }}</a></th>
+                        <th class="font-weight-normal">{{ event.status }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2 text-center">
+    <div class="col-5">
+        <h2>Likes <small>({{ likes.count }})</small></h2>
+    </div>
+    <div class="col-5">
+        <h2>Dislikes <small>({{ dislikes.count }})</small></h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-5 table-responsive-sm">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for like in likes.content %}
+                    <tr>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ like.id }}">{{ like.title }}</a></th>
+                        <th class="font-weight-normal">{{ like.user.firstname | title }} {{ like.user.surname | title }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-5 table-responsive-sm">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dislike in dislikes.content %}
+                    <tr>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ dislike.id }}">{{ dislike.title }}</a></th>
+                        <th class="font-weight-normal">{{ dislike.user.firstname | title }} {{ dislike.user.surname | title }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

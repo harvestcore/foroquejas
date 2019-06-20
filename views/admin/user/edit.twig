@@ -1,0 +1,81 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h3>Ver/Modificar usuario</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        {{ message }}
+        <form method="POST" action="{{ URL }}admin/updateuser" enctype='multipart/form-data'>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="profile-firstname">Nombre</label>
+                    <input type="text" class="form-control" name="profile-firstname" placeholder="Nombre" required value="{{ data.firstname }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="profile-surname">Apellidos</label>
+                    <input type="text" class="form-control" name="profile-surname" placeholder="Apellidos" required value="{{ data.surname }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    <label for="profile-email">Email</label>
+                    <input type="email" class="form-control" name="profile-email" placeholder="Email" required value="{{ data.email }}" readonly>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="profile-status">Estado</label>
+                    <select class="selectpicker form-control" name="profile-status" required>
+                        {% if data.status == 'active' %}
+                            <option value="active" selected>Activo</option>
+                            <option value="inactive">Inactivo</option>
+                        {% else %}
+                            <option value="active">Activo</option>
+                            <option value="inactive" selected>Inactivo</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="profile-address">Dirección postal</label>
+                    <input type="text" class="form-control" name="profile-address" placeholder="Dirección postal" required value="{{ data.address }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="profile-telnumber">Teléfono</label>
+                    <input type="number" class="form-control" name="profile-telnumber" placeholder="Teléfono" required min="600000000" max="999999999" value="{{ data.telnumber }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="profile-rol">Rol</label>
+                    <select class="selectpicker form-control" name="profile-rol" required>
+                        {% if data.rol == 'admin' %}
+                            <option value="colaborator">Colaborador</option>
+                            <option value="admin" selected>Administrador</option>
+                        {% else %}
+                            <option value="colaborator" selected>Colaborador</option>
+                            <option value="admin">Administrador</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="profile-image">Selecciona una foto de perfil</label>
+                <input type="file" name="profile-image" class="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

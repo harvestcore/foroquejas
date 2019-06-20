@@ -1,0 +1,120 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Búsqueda avanzada</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        <form method="POST" action="{{ URL }}events/search" enctype="multipart/form-data">
+            <div class="form-row border border-primary rounded pt-4 my-4">
+                <div class="form-group col-md-6">
+                    <label for="search-content">Texto de búsqueda</label>
+                    <input type="text" class="form-control" name="search-content">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="search-place">Lugar</label>
+                    <input type="text" class="form-control" name="search-place">
+                </div>
+            </div>
+            <div class="form-row text-center border border-primary rounded pt-4 my-4">
+                <div class="form-group col-md-4">
+                    <label for="search-recentfirst">Más recientes primero</label>
+                    <input type="radio" name="search-by" value="byrecent" checked>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="search-bylikes">Mayor número de likes</label>
+                    <input type="radio" name="search-by" value="bylikes">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="search-bynetlikes">Mayor número de likes netos</label>
+                    <input type="radio" name="search-by" value="bynetlikes">
+                </div>
+            </div>
+            <div class="text-center border border-primary rounded pt-4">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="search-status-checking">Pendiente</label>
+                        <input type="checkbox" name="search-status-checking" value="checking">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="search-status-checked">Comprobada</label>
+                        <input type="checkbox" name="search-status-checked" value="checked">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="search-status-processed">Tramitada</label>
+                        <input type="checkbox" name="search-status-processed" value="processed">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="search-status-irresolvable">Irresoluble</label>
+                        <input type="checkbox" name="search-status-irresolvable" value="irresolvable">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="search-status-resolved">Resuelta</label>
+                        <input type="checkbox" name="search-status-resolved" value="resolved">
+                    </div>
+                </div>
+            </div>
+            <input type="checkbox" name="search-form" hidden required checked>
+            <button type="submit" class="btn btn-primary my-4">Buscar</button>
+        </form>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+
+{% if events %}
+    <div class="row my-2">
+        <div class="col-12">
+            <h2>Quejas encontradas</h2>
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-10">
+            <table class="table table-sm">
+                <thead class="">
+                    <tr>
+                        <th>Fecha/Hora</th>
+                        <th>Lugar</th>
+                        <th>Asunto</th>
+                        <th>Estado</th>
+                        <th>Likes</th>
+                        <th>Dislikes</th>
+                        <th>Likes netos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evt in events %}
+                        <tr>
+                            <th class="font-weight-normal">{{ evt.datetime | date("d/m/y ~ H:i\\h") }}</th>
+                            <th class="font-weight-normal">{{ evt.place }}</th>
+                            <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ evt.id }}">{{ evt.title }}</a></th>
+                            <th class="font-weight-normal">{{ statustosp(evt.status) }}</th>
+                            <th class="font-weight-normal text-right">{{ evt.likes }}</th>
+                            <th class="font-weight-normal text-right">{{ evt.dislikes }}</th>
+                            <th class="font-weight-normal text-right">{{ evt.likes - evt.dislikes }}</th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% else %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>{{ message }}</h2>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

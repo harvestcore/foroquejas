@@ -1,0 +1,71 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h3>Agregar usuario</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        {{ message }}
+        <form method="POST" action="{{ URL }}admin/adduser" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="user-firstname">Nombre</label>
+                    <input type="text" class="form-control" name="user-firstname" placeholder="Nombre" required value="{{ data.firstname }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="user-surname">Apellidos</label>
+                    <input type="text" class="form-control" name="user-surname" placeholder="Apellidos" required value="{{ data.surname }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-email">Email</label>
+                <input type="email" class="form-control" name="user-email" placeholder="Email" required value="{{ data.email }}">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="user-password">Contraseña</label>
+                    <input type="password" class="form-control" name="user-password" placeholder="Contraseña" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="user-password-confirm">Confirmación de contraseña</label>
+                    <input type="password" class="form-control" name="user-password-confirm" placeholder="Confirma la contraseña" required >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="user-firstname">Dirección postal</label>
+                    <input type="text" class="form-control" name="user-address" placeholder="Dirección postal" required value="{{ data.address }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="user-surname">Teléfono</label>
+                    <input type="number" class="form-control" name="user-telnumber" placeholder="Teléfono" required min="600000000" max="999999999" value="{{ data.telnumber }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="user-rol">Rol</label>
+                    <select class="selectpicker form-control" name="user-rol" required>
+                        <option value="colaborator">Colaborador</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="user-image">Selecciona una foto de perfil (opcional) </label>
+                <input type="file" name="user-image" class="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Crear usuario</button>
+        </form>
+    </div>
+
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

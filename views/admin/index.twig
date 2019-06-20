@@ -1,0 +1,40 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-12">
+        <h2>Panel de control</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        <div class="border border-primary rounded px-2 py-2 my-3">
+            <h4>Gestión de usuarios</h4>
+            <a class="btn btn-success" href="{{ URL }}admin/useradd">Agregar</a>
+            <a class="btn btn-info" href="{{ URL }}admin/userlist">Listado</a>
+        </div>
+        <div class="border border-primary rounded px-2 py-2 my-3">
+            <h4>Gestión de BBDD</h4>
+            <a class="btn btn-warning" href="{{ URL }}admin/backupdb">Backup</a>
+            <a class="btn btn-danger" href="{{ URL }}admin/drop">Vaciar BBDD</a>
+            
+            <form method="POST" action="{{ URL }}admin/uploaddb" enctype="multipart/form-data">
+                <input type="file" name="db-file" class="file">
+                <button class="btn btn-info" type="submit">Cargar BBDD</button>
+            </form>
+        </div>
+        <div class="border border-primary rounded px-2 py-2 my-3">
+            <h4>Log</h4>
+            <a class="btn btn-success" href="{{ URL }}admin/loglist">Ver Log</a>
+        </div>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

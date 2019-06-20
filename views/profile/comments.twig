@@ -1,0 +1,40 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row mb-2">
+    <div class="col-10">
+        <h2>Mis comentarios</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Fecha/Hora</th>
+                    <th>Comentario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <th class="font-weight-normal">{{ comment.datetime | date('d/m/y ~ H:i\\h') }}</th>
+                        <th class="font-weight-normal">{{ comment.content | length > 65 ? comment.content | slice(0, 65) ~ '...' : comment.content }}</th>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ comment.event }}">Ver más...</a></th>
+                        <th class="font-weight-normal">{{ event.status }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+{% endblock %}

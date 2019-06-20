@@ -1,0 +1,97 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+    {% include "base/smallheader.twig" %}
+{% endblock %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col-2 text-center">
+        {% include "base/newevent.twig" %}
+    </div>
+
+    <div class="col-10">
+        <h2>Últimas quejas</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2 text-center">
+        <h5>Top quejicas</h5>
+        <ul class="list-unstyled">
+            {% for te in topevents %}
+                <li>{{ te.user.firstname | title }} {{ te.user.surname | title }} ({{ te.data.posts }})</li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+    <div class="col-8">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Fecha/Hora</th>
+                    <th>Lugar</th>
+                    <th>Asunto</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <th class="font-weight-normal">{{ event.datetime | date('d/m/y ~ H:i\\h') }}</th>
+                        <th class="font-weight-normal">{{ event.place }}</th>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ event.id }}">{{ event.title | length > 30 ? event.title | slice(0, 30) ~ '...' : event.title }}</a></th>
+                        <th class="font-weight-normal">{{ statustosp(event.status) }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-2">
+        {% include "base/sideprofile.twig" %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-2">
+    </div>
+
+    <div class="col-10">
+        <h2>Últimos comentarios</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2 text-center">
+        <h5>Top comentaristas</h5>
+        <ul class="list-unstyled">
+            {% for tc in topcomments %}
+                <li>{{ tc.user.firstname | title }} {{ tc.user.surname | title }} ({{ tc.data.comms }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-8">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="">
+                <tr>
+                    <th>Fecha/Hora</th>
+                    <th>Autor</th>
+                    <th>Comentario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <th class="font-weight-normal">{{ comment.data.datetime | date('d/m/y ~ H:i\\h') }}</th>
+                        <th class="font-weight-normal">{{ comment.user.firstname | title }} {{ comment.user.surname | title }}</th>
+                        <th class="font-weight-normal">{{ comment.data.content | length > 30 ? comment.data.content | slice(0, 30) ~ '...' : comment.data.content }}</th>
+                        <th class="font-weight-normal"><a href="{{ URL }}events/get/{{ comment.data.event }}">Ver más...</a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
