@@ -2,6 +2,8 @@
 
 Esto es un foro para quejarse.
 
+![](mdimg/foro.png)
+
 
 ## Introducción
 
