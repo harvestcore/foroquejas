@@ -133,3 +133,43 @@ Utilizo cinco modelos para manejar las cinco tablas de la base de datos. Son los
 - Event: Consultas para las quejas, likes, dislikes, búsqueda y estadísticos.
 - Log: Funciones para el log del sistema.
 - User: Todo tipo de consultas para gestionar los usuarios y sus estadísticos.
+
+Entré en una discoteca, soy timido y me asusté
+Pibitas que con quince años y los chavales también
+Hablaban de cosas raras de lo cual no me enteré
+Les diré lo que decían, les diré lo que decían
+Por si saben lo que es
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
+Pasados 20 minutos sin saber cómo y por qué
+Con el aroma del humo yo tambien me coloqué
+Me dijeron los chavales ven acá y aplastaté
+Le pegué a la mandanguita, le pegué a la mandanguita
+Se acabó mi timided
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
+Me voy pá la discoteca a buscar mi churifú
+Mirad si me pongo bien que creo que soy Kung Fú
+Lo mismo en Valladolid, Toledo que Salamanca
+Todo el mundo baila ya, Todo el mundo baila ya
+El ritmo de la mandanga
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
+Que dame la mandanga y déjame de tema
+Dame el chocolate que me ponga bien
+Dame de la negra que hace buen olor
+Que con la maría vaya colocón
